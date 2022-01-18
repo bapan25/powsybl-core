@@ -1,2 +1,4 @@
 short-circuit-parameters:
   subTransStudy: true
+  study-type: "SELECTIVE_STUDY"
+  equipment-name: "id"
