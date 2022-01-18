@@ -85,6 +85,14 @@ public class ShortCircuitParametersTest {
     }
 
     @Test
+    public void testStudyType() {
+        ShortCircuitParameters parameters = ShortCircuitParameters.load(platformConfig);
+        assertEquals(ShortCircuitConstants.StudyType.SYSTEMATIC_STUDY, parameters.getStudyType());
+
+        assertNull(parameters.getEquipment());
+    }
+
+    @Test
     public void testConfigLoader() throws IOException {
         Path cfgDir = Files.createDirectory(fileSystem.getPath("config"));
         Path cfgFile = cfgDir.resolve("config.yml");
@@ -93,6 +101,9 @@ public class ShortCircuitParametersTest {
         PlatformConfig platformConfig = new PlatformConfig(new YamlModuleConfigRepository(cfgFile), cfgDir);
         ShortCircuitParameters parameters = ShortCircuitParameters.load(platformConfig);
         assertTrue(parameters.isSubTransStudy());
+        assertEquals(ShortCircuitConstants.StudyType.SELECTIVE_STUDY, parameters.getStudyType());
+        assertNotNull(parameters.getEquipment());
+        assertEquals("id", parameters.getEquipment());
     }
 
     private static class DummyExtension extends AbstractExtension<ShortCircuitParameters> {
