@@ -56,14 +56,15 @@ public final class TopologyHypothesisUtils {
             Bus bus = network.getBusBreakerView().getBus(bbsOrBusId);
             Bus bus1 = voltageLevel.getBusBreakerView()
                     .newBus()
-                    .setId(line.getId() + "_BUS_1")
-                    .add();
-            Bus bus2 = voltageLevel.getBusBreakerView()
-                    .newBus()
-                    .setId(line.getId() + "_BUS_2")
+                    .setId(line.getId() + "_BUS")
                     .add();
             lineAdder.setBus2(bus1.getId());
-            createBusBreakerSwitches(bus1.getId(), bus.getId(), bus2.getId(), line.getId(), voltageLevel.getBusBreakerView());
+            voltageLevel.getBusBreakerView().newSwitch()
+                    .setId(line.getId() + "_SW")
+                    .setOpen(false)
+                    .setBus1(bus1.getId())
+                    .setBus2(bus.getId())
+                    .add();
         } else if (topologyKind == TopologyKind.NODE_BREAKER) {
             BusbarSection bbs = network.getBusbarSection(bbsOrBusId);
             int bbsNode = bbs.getTerminal().getNodeBreakerView().getNode();
@@ -113,9 +114,10 @@ public final class TopologyHypothesisUtils {
             BusbarSection bbs = network.getBusbarSection(bbsOrBusId);
             int bbsNode = bbs.getTerminal().getNodeBreakerView().getNode();
             int firstAvailableNode = voltageLevel.getNodeBreakerView().getMaximumNodeIndex() + 1;
+            createNodeBreakerSwitches(firstAvailableNode, firstAvailableNode + 1, bbsNode, "_1", line.getId(), voltageLevel.getNodeBreakerView());
+            createNodeBreakerSwitches(bbsNode, firstAvailableNode + 2, firstAvailableNode + 3, "_2", line.getId(), voltageLevel.getNodeBreakerView());
             adder1.setNode2(firstAvailableNode);
-            adder2.setNode1(firstAvailableNode + 1);
-            createNodeBreakerSwitches(firstAvailableNode, bbsNode, firstAvailableNode + 1, line.getId(), voltageLevel.getNodeBreakerView());
+            adder2.setNode1(firstAvailableNode + 3);
         } else {
             throw new AssertionError();
         }
@@ -171,15 +173,19 @@ public final class TopologyHypothesisUtils {
     }
 
     private static void createNodeBreakerSwitches(int node1, int middleNode, int node2, String lineId, VoltageLevel.NodeBreakerView view) {
+        createNodeBreakerSwitches(node1, middleNode, node2, "", lineId, view);
+    }
+
+    private static void createNodeBreakerSwitches(int node1, int middleNode, int node2, String suffix, String lineId, VoltageLevel.NodeBreakerView view) {
         view.newSwitch()
-                .setId(lineId + "_BREAKER")
+                .setId(lineId + "_BREAKER" + suffix)
                 .setKind(SwitchKind.BREAKER)
                 .setOpen(false)
                 .setNode1(node1)
                 .setNode2(middleNode)
                 .add();
         view.newSwitch()
-                .setId(lineId + "_DISCONNECTOR")
+                .setId(lineId + "_DISCONNECTOR" + suffix)
                 .setKind(SwitchKind.DISCONNECTOR)
                 .setOpen(false)
                 .setNode1(middleNode)
