@@ -181,6 +181,7 @@ public final class TopologyHypothesisUtils {
                 .setId(lineId + "_BREAKER" + suffix)
                 .setKind(SwitchKind.BREAKER)
                 .setOpen(false)
+                .setRetained(true)
                 .setNode1(node1)
                 .setNode2(middleNode)
                 .add();

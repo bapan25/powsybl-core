@@ -23,18 +23,63 @@ import java.io.IOException;
 public class TopologyHypothesisUtilsXmlTest extends AbstractXmlConverterTest {
 
     @Test
-    public void createVoltageLevelOnLineTest() throws IOException {
-        Network network = createNetwork();
+    public void createVoltageLevelOnLineNbTest() throws IOException {
+        Network network = createNbNetwork();
         TopologyHypothesisUtils.createVoltageLevelOnLine(50, "NHV1_NHV2_1_VL#0", "bbs", network.getLine("NHV1_NHV2_1"));
         roundTripXmlTest(network, NetworkXml::writeAndValidate, NetworkXml::validateAndRead,
-                getVersionDir(IidmXmlConstants.CURRENT_IIDM_XML_VERSION) + "eurostag-line-split-vl.xml");
+                getVersionDir(IidmXmlConstants.CURRENT_IIDM_XML_VERSION) + "eurostag-line-split-nb-vl.xml");
     }
 
     @Test
-    public void attachLineOnLine() throws IOException {
-        Network network = createNetwork();
+    public void createVoltageLevelOnLineBbTest() throws IOException {
+        Network network = createBbNetwork();
+        TopologyHypothesisUtils.createVoltageLevelOnLine(50, "NHV1_NHV2_1_VL#0", "bus", network.getLine("NHV1_NHV2_1"));
+        roundTripXmlTest(network, NetworkXml::writeAndValidate, NetworkXml::validateAndRead,
+                getVersionDir(IidmXmlConstants.CURRENT_IIDM_XML_VERSION) + "eurostag-line-split-bb-vl.xml");
+    }
+
+    @Test
+    public void attachLineOnLineNbTest() throws IOException {
+        Network network = createNbNetwork();
         Line line = network.getLine("NHV1_NHV2_1");
-        LineAdder adder = network.newLine()
+        LineAdder adder = createLineAdder(line, network);
+        TopologyHypothesisUtils.attachNewLineOnLine(50, "NHV1_NHV2_1_VL#0", "bbs", line, adder);
+        roundTripXmlTest(network, NetworkXml::writeAndValidate, NetworkXml::validateAndRead,
+                getVersionDir(IidmXmlConstants.CURRENT_IIDM_XML_VERSION) + "eurostag-line-split-nb-l.xml");
+    }
+
+    @Test
+    public void attachLineOnLineBbTest() throws IOException {
+        Network network = createBbNetwork();
+        Line line = network.getLine("NHV1_NHV2_1");
+        LineAdder adder = createLineAdder(line, network);
+        TopologyHypothesisUtils.attachNewLineOnLine(50, "NHV1_NHV2_1_VL#0", "bus", line, adder);
+        roundTripXmlTest(network, NetworkXml::writeAndValidate, NetworkXml::validateAndRead,
+                getVersionDir(IidmXmlConstants.CURRENT_IIDM_XML_VERSION) + "eurostag-line-split-bb-l.xml");
+    }
+
+    private static Network createNbNetwork() {
+        Network network = createNetwork();
+        VoltageLevel vl = network.newVoltageLevel().setId("NHV1_NHV2_1_VL#0").setNominalV(380).setTopologyKind(TopologyKind.NODE_BREAKER).add();
+        vl.getNodeBreakerView().newBusbarSection().setId("bbs").setNode(0).add();
+        return network;
+    }
+
+    private static Network createBbNetwork() {
+        Network network = createNetwork();
+        VoltageLevel vl = network.newVoltageLevel().setId("NHV1_NHV2_1_VL#0").setNominalV(380).setTopologyKind(TopologyKind.BUS_BREAKER).add();
+        vl.getBusBreakerView().newBus().setId("bus").add();
+        return network;
+    }
+
+    private static Network createNetwork() {
+        Network network = EurostagTutorialExample1Factory.create();
+        network.setCaseDate(DateTime.parse("2021-08-27T14:44:56.567+02:00"));
+        return network;
+    }
+
+    private static LineAdder createLineAdder(Line line, Network network) {
+        return network.newLine()
                 .setId("testLine")
                 .setR(line.getR())
                 .setX(line.getX())
@@ -42,16 +87,5 @@ public class TopologyHypothesisUtilsXmlTest extends AbstractXmlConverterTest {
                 .setG1(line.getG1())
                 .setB2(line.getB2())
                 .setG2(line.getG2());
-        TopologyHypothesisUtils.attachNewLineOnLine(50, "NHV1_NHV2_1_VL#0", "bbs", line, adder);
-        roundTripTest(network, NetworkXml::writeAndValidate, NetworkXml::validateAndRead,
-                getVersionDir(IidmXmlConstants.CURRENT_IIDM_XML_VERSION) + "eurostag-line-split-l.xml");
-    }
-
-    private static Network createNetwork() {
-        Network network = EurostagTutorialExample1Factory.create();
-        VoltageLevel vl = network.newVoltageLevel().setId("NHV1_NHV2_1_VL#0").setNominalV(380).setTopologyKind(TopologyKind.NODE_BREAKER).add();
-        vl.getNodeBreakerView().newBusbarSection().setId("bbs").setNode(0).add();
-        network.setCaseDate(DateTime.parse("2021-08-27T14:44:56.567+02:00"));
-        return network;
     }
 }
