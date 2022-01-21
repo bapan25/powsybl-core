@@ -22,12 +22,22 @@ public final class TopologyHypothesisUtils {
                 line.getId() + "_2", line, lineAdder);
     }
 
-    public static void attachNewLineOnLine(double percent, String voltageLevelId, String bbsOrBusId, String fictitiousVlId,
-                                           String line1Id, String line2Id, Line line, LineAdder lineAdder) {
+    public static void attachNewLineOnLine(double percent, String voltageLevelId, String bbsOrBusId, String fictitiousVlId, String line1Id, String line2Id,
+                                           Line line, LineAdder lineAdder) {
+        attachNewLineOnLine(percent, voltageLevelId, bbsOrBusId, fictitiousVlId, null, line1Id, null, line2Id, null, line, lineAdder);
+    }
+
+    public static void attachNewLineOnLine(double percent, String voltageLevelId, String bbsOrBusId, String fictitiousVlId, String fictitiousVlName,
+                                           String line1Id, String line1Name, String line2Id, String line2Name, Line line, LineAdder lineAdder) {
         Network network = line.getNetwork();
-        VoltageLevel fictitiousVl = network.newVoltageLevel().setId(fictitiousVlId).setFictitious(true).setNominalV(line.getTerminal1().getVoltageLevel().getNominalV()).setTopologyKind(TopologyKind.NODE_BREAKER).add();
-        LineAdder adder1 = createLineAdder(percent, line1Id, line.getTerminal1().getVoltageLevel().getId(), fictitiousVlId, network, line);
-        LineAdder adder2 = createLineAdder(percent, line2Id, fictitiousVlId, line.getTerminal2().getVoltageLevel().getId(), network, line);
+        VoltageLevel fictitiousVl = network.newVoltageLevel()
+                .setId(fictitiousVlId)
+                .setName(fictitiousVlName)
+                .setFictitious(true)
+                .setNominalV(line.getTerminal1().getVoltageLevel().getNominalV())
+                .setTopologyKind(TopologyKind.NODE_BREAKER).add();
+        LineAdder adder1 = createLineAdder(percent, line1Id, line1Name, line.getTerminal1().getVoltageLevel().getId(), fictitiousVlId, network, line);
+        LineAdder adder2 = createLineAdder(percent, line2Id, line2Name, fictitiousVlId, line.getTerminal2().getVoltageLevel().getId(), network, line);
         attachLine(line.getTerminal1(), adder1, (bus, adder) -> adder.setConnectableBus1(bus.getId()), (bus, adder) -> adder.setBus1(bus.getId()), (node, adder) -> adder.setNode1(node));
         attachLine(line.getTerminal2(), adder2, (bus, adder) -> adder.setConnectableBus2(bus.getId()), (bus, adder) -> adder.setBus2(bus.getId()), (node, adder) -> adder.setNode2(node));
         Line line1 = adder1.setNode2(0).add();
@@ -82,6 +92,11 @@ public final class TopologyHypothesisUtils {
         createVoltageLevelOnLine(percent, voltageLevelId, bbsOrBusId, line.getId() + "_1", line.getId() + "_2", line);
     }
 
+    public static void createVoltageLevelOnLine(double percent, String voltageLevelId, String bbsOrBusId, String line1Id, String line2Id,
+                                                Line line) {
+        createVoltageLevelOnLine(percent, voltageLevelId, bbsOrBusId, line1Id, null, line2Id, null, line);
+    }
+
     /**
      * Split a given line and create a fictitious voltage level at the junction.<br>
      * The characteristics of the two new lines respect the given ratios such as this:<br>
@@ -89,11 +104,11 @@ public final class TopologyHypothesisUtils {
      * <code>r2 = (1 - percent) * r</code><br>
      */
     public static void createVoltageLevelOnLine(double percent, String voltageLevelId, String bbsOrBusId,
-                                                String line1Id, String line2Id, Line line) {
+                                                String line1Id, String line1Name, String line2Id, String line2Name, Line line) {
         Network network = line.getNetwork();
         VoltageLevel voltageLevel = network.getVoltageLevel(voltageLevelId);
-        LineAdder adder1 = createLineAdder(percent, line1Id, line.getTerminal1().getVoltageLevel().getId(), voltageLevelId, network, line);
-        LineAdder adder2 = createLineAdder(100 - percent, line2Id, voltageLevelId, line.getTerminal2().getVoltageLevel().getId(), network, line);
+        LineAdder adder1 = createLineAdder(percent, line1Id, line1Name, line.getTerminal1().getVoltageLevel().getId(), voltageLevelId, network, line);
+        LineAdder adder2 = createLineAdder(100 - percent, line2Id, line2Name, voltageLevelId, line.getTerminal2().getVoltageLevel().getId(), network, line);
         attachLine(line.getTerminal1(), adder1, (bus, adder) -> adder.setConnectableBus1(bus.getId()), (bus, adder) -> adder.setBus1(bus.getId()), (node, adder) -> adder.setNode1(node));
         attachLine(line.getTerminal2(), adder2, (bus, adder) -> adder.setConnectableBus2(bus.getId()), (bus, adder) -> adder.setBus2(bus.getId()), (node, adder) -> adder.setNode2(node));
         TopologyKind topologyKind = voltageLevel.getTopologyKind();
@@ -128,9 +143,10 @@ public final class TopologyHypothesisUtils {
         line.remove();
     }
 
-    private static LineAdder createLineAdder(double percent, String id, String voltageLevelId1, String voltageLevelId2, Network network, Line line) {
+    private static LineAdder createLineAdder(double percent, String id, String name, String voltageLevelId1, String voltageLevelId2, Network network, Line line) {
         return network.newLine()
                 .setId(id)
+                .setName(name)
                 .setVoltageLevel1(voltageLevelId1)
                 .setVoltageLevel2(voltageLevelId2)
                 .setR(line.getR() * percent / 100)
