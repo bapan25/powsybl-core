@@ -24,18 +24,34 @@ public final class TopologyHypothesisUtils {
 
     public static void attachNewLineOnLine(double percent, String voltageLevelId, String bbsOrBusId, String fictitiousVlId, String line1Id, String line2Id,
                                            Line line, LineAdder lineAdder) {
-        attachNewLineOnLine(percent, voltageLevelId, bbsOrBusId, fictitiousVlId, null, line1Id, null, line2Id, null, line, lineAdder);
+        attachNewLineOnLine(percent, voltageLevelId, bbsOrBusId, fictitiousVlId, null, false, null, line1Id, null, line2Id, null, line, lineAdder);
     }
 
-    public static void attachNewLineOnLine(double percent, String voltageLevelId, String bbsOrBusId, String fictitiousVlId, String fictitiousVlName,
+    public static void attachNewLineOnLine(double percent, String voltageLevelId, String bbsOrBusId,
+                                           String fictitiousVlId, String fictitiousVlName, boolean createFictSubstation, String fictitiousSubstationId,
                                            String line1Id, String line1Name, String line2Id, String line2Name, Line line, LineAdder lineAdder) {
         Network network = line.getNetwork();
-        VoltageLevel fictitiousVl = network.newVoltageLevel()
-                .setId(fictitiousVlId)
-                .setName(fictitiousVlName)
-                .setFictitious(true)
-                .setNominalV(line.getTerminal1().getVoltageLevel().getNominalV())
-                .setTopologyKind(TopologyKind.NODE_BREAKER).add();
+        VoltageLevel fictitiousVl;
+        if (createFictSubstation) {
+            fictitiousVl = network.newSubstation()
+                    .setId(fictitiousSubstationId)
+                    .setFictitious(true)
+                    .add()
+                    .newVoltageLevel()
+                    .setId(fictitiousVlId)
+                    .setName(fictitiousVlName)
+                    .setFictitious(true)
+                    .setNominalV(line.getTerminal1().getVoltageLevel().getNominalV())
+                    .setTopologyKind(TopologyKind.NODE_BREAKER)
+                    .add();
+        } else {
+            fictitiousVl = network.newVoltageLevel()
+                    .setId(fictitiousVlId)
+                    .setName(fictitiousVlName)
+                    .setFictitious(true)
+                    .setNominalV(line.getTerminal1().getVoltageLevel().getNominalV())
+                    .setTopologyKind(TopologyKind.NODE_BREAKER).add();
+        }
         LineAdder adder1 = createLineAdder(percent, line1Id, line1Name, line.getTerminal1().getVoltageLevel().getId(), fictitiousVlId, network, line);
         LineAdder adder2 = createLineAdder(percent, line2Id, line2Name, fictitiousVlId, line.getTerminal2().getVoltageLevel().getId(), network, line);
         attachLine(line.getTerminal1(), adder1, (bus, adder) -> adder.setConnectableBus1(bus.getId()), (bus, adder) -> adder.setBus1(bus.getId()), (node, adder) -> adder.setNode1(node));
