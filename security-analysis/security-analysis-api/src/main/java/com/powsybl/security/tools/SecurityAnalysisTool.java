@@ -35,6 +35,7 @@ import com.powsybl.security.json.JsonSecurityAnalysisParameters;
 import com.powsybl.security.monitor.StateMonitor;
 import com.powsybl.security.preprocessor.SecurityAnalysisPreprocessorFactory;
 import com.powsybl.security.preprocessor.SecurityAnalysisPreprocessors;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import com.powsybl.tools.Command;
 import com.powsybl.tools.Tool;
 import com.powsybl.tools.ToolOptions;

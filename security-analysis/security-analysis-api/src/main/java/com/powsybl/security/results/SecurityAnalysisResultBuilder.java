@@ -4,13 +4,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-package com.powsybl.security;
+package com.powsybl.security.results;
 
 import com.google.common.collect.ImmutableList;
 import com.powsybl.contingency.Contingency;
+import com.powsybl.security.LimitViolation;
+import com.powsybl.security.LimitViolationFilter;
+import com.powsybl.security.NetworkMetadata;
 import com.powsybl.security.interceptors.SecurityAnalysisInterceptor;
 import com.powsybl.security.interceptors.SecurityAnalysisResultContext;
-import com.powsybl.security.results.*;
 
 import java.util.*;
 

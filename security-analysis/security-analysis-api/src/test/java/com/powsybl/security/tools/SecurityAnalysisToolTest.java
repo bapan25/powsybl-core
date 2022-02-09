@@ -24,6 +24,8 @@ import com.powsybl.security.execution.SecurityAnalysisExecutionInput;
 import com.powsybl.security.interceptors.SecurityAnalysisInterceptor;
 import com.powsybl.security.preprocessor.SecurityAnalysisPreprocessor;
 import com.powsybl.security.preprocessor.SecurityAnalysisPreprocessorFactory;
+import com.powsybl.security.results.LimitViolationsResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import com.powsybl.tools.AbstractToolTest;
 import com.powsybl.tools.Tool;
 import com.powsybl.tools.ToolOptions;

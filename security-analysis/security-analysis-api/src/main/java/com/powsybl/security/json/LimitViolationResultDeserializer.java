@@ -12,7 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.powsybl.security.LimitViolation;
-import com.powsybl.security.LimitViolationsResult;
+import com.powsybl.security.results.LimitViolationsResult;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -6,8 +6,6 @@
  */
 package com.powsybl.security.results;
 
-import com.powsybl.security.LimitViolationsResult;
-
 import java.util.*;
 
 /**

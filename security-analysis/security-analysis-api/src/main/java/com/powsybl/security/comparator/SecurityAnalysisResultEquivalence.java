@@ -14,7 +14,7 @@ import java.util.Objects;
 import com.google.common.base.Equivalence;
 import com.powsybl.security.LimitViolation;
 import com.powsybl.security.results.PostContingencyResult;
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 /**
  *

@@ -27,6 +27,7 @@ import com.powsybl.security.monitor.StateMonitor;
 import com.powsybl.security.results.BranchResult;
 import com.powsybl.security.results.BusResults;
 import com.powsybl.security.results.PostContingencyResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import org.assertj.core.api.Assertions;
 import org.junit.After;
 import org.junit.Assert;

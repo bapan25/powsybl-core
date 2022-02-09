@@ -13,7 +13,7 @@ import java.util.Objects;
 
 import com.google.common.base.Equivalence;
 import com.powsybl.security.LimitViolation;
-import com.powsybl.security.LimitViolationsResult;
+import com.powsybl.security.results.LimitViolationsResult;
 
 /**
  *

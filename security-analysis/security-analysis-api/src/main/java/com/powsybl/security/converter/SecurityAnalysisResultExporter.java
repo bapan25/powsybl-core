@@ -6,7 +6,7 @@
  */
 package com.powsybl.security.converter;
 
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 import java.io.Writer;
 import java.util.Properties;

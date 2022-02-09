@@ -13,6 +13,7 @@ import com.powsybl.iidm.network.Network;
 import com.powsybl.security.detectors.DefaultLimitViolationDetector;
 import com.powsybl.security.detectors.LoadingLimitType;
 import com.powsybl.security.results.PostContingencyResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 import java.io.IOException;
 import java.io.StringWriter;

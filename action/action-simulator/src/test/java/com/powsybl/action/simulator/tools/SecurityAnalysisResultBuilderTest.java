@@ -10,7 +10,9 @@ import com.powsybl.action.simulator.loadflow.RunningContext;
 import com.powsybl.contingency.Contingency;
 import com.powsybl.iidm.network.Branch;
 import com.powsybl.security.*;
+import com.powsybl.security.results.LimitViolationsResult;
 import com.powsybl.security.results.PostContingencyResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import org.junit.Test;
 
 import java.util.Arrays;

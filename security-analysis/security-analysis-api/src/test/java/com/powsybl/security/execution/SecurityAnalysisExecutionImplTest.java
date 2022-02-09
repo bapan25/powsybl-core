@@ -13,6 +13,7 @@ import com.powsybl.contingency.ContingenciesProvider;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.security.*;
 import com.powsybl.security.interceptors.SecurityAnalysisInterceptor;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;

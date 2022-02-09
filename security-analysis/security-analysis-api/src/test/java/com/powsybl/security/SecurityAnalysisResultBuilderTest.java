@@ -5,10 +5,7 @@ import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.network.VoltageLevel;
 import com.powsybl.iidm.network.test.EurostagTutorialExample1Factory;
 import com.powsybl.security.interceptors.*;
-import com.powsybl.security.results.BranchResult;
-import com.powsybl.security.results.BusResults;
-import com.powsybl.security.results.PostContingencyResult;
-import com.powsybl.security.results.ThreeWindingsTransformerResult;
+import com.powsybl.security.results.*;
 import org.junit.Test;
 
 import java.util.Collections;

@@ -21,9 +21,7 @@ import com.powsybl.security.interceptors.RunningContext;
 import com.powsybl.security.interceptors.SecurityAnalysisInterceptor;
 import com.powsybl.security.monitor.StateMonitor;
 import com.powsybl.security.monitor.StateMonitorIndex;
-import com.powsybl.security.results.BranchResult;
-import com.powsybl.security.results.BusResults;
-import com.powsybl.security.results.ThreeWindingsTransformerResult;
+import com.powsybl.security.results.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -9,7 +9,6 @@ package com.powsybl.security.results;
 import com.google.common.collect.ImmutableMap;
 import com.powsybl.contingency.Contingency;
 import com.powsybl.security.LimitViolation;
-import com.powsybl.security.LimitViolationsResult;
 
 import java.util.*;
 import java.util.function.Function;

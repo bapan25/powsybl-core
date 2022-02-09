@@ -12,8 +12,8 @@ import com.powsybl.computation.ComputationException;
 import com.powsybl.computation.ComputationExceptionBuilder;
 import com.powsybl.computation.ExecutionHandler;
 import com.powsybl.computation.Partition;
-import com.powsybl.security.SecurityAnalysisResult;
-import com.powsybl.security.SecurityAnalysisResultMerger;
+import com.powsybl.security.results.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResultMerger;
 import com.powsybl.security.execution.SecurityAnalysisExecutionInput;
 import com.powsybl.security.json.SecurityAnalysisResultDeserializer;
 

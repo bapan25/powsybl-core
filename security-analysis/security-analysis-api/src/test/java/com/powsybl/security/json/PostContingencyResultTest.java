@@ -10,10 +10,7 @@ import com.powsybl.commons.AbstractConverterTest;
 import com.powsybl.commons.json.JsonUtil;
 import com.powsybl.contingency.Contingency;
 import com.powsybl.security.*;
-import com.powsybl.security.results.BranchResult;
-import com.powsybl.security.results.BusResults;
-import com.powsybl.security.results.PostContingencyResult;
-import com.powsybl.security.results.ThreeWindingsTransformerResult;
+import com.powsybl.security.results.*;
 import org.junit.Test;
 
 import java.io.IOException;

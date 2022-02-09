@@ -18,7 +18,7 @@ import org.junit.Test;
 import com.powsybl.iidm.network.Branch;
 import com.powsybl.security.LimitViolation;
 import com.powsybl.security.LimitViolationType;
-import com.powsybl.security.LimitViolationsResult;
+import com.powsybl.security.results.LimitViolationsResult;
 
 /**
  *

@@ -16,6 +16,7 @@ import com.powsybl.security.*;
 import com.powsybl.security.detectors.DefaultLimitViolationDetector;
 import com.powsybl.security.interceptors.SecurityAnalysisInterceptor;
 import com.powsybl.security.monitor.StateMonitor;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

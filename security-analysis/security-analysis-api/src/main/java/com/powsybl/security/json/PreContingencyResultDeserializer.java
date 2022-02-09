@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.powsybl.security.LimitViolationsResult;
+import com.powsybl.security.results.LimitViolationsResult;
 import com.powsybl.security.results.*;
 
 import java.io.IOException;

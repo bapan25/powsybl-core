@@ -7,7 +7,7 @@
 package com.powsybl.security.execution;
 
 import com.powsybl.computation.ComputationManager;
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 import java.util.concurrent.CompletableFuture;
 

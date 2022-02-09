@@ -17,10 +17,7 @@ import com.powsybl.security.extensions.ActivePowerExtension;
 import com.powsybl.security.extensions.CurrentExtension;
 import com.powsybl.security.extensions.VoltageExtension;
 import com.powsybl.security.json.SecurityAnalysisResultDeserializer;
-import com.powsybl.security.results.BranchResult;
-import com.powsybl.security.results.BusResults;
-import com.powsybl.security.results.PostContingencyResult;
-import com.powsybl.security.results.ThreeWindingsTransformerResult;
+import com.powsybl.security.results.*;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 

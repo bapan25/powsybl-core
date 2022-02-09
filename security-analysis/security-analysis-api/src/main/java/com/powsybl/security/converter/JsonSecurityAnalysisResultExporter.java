@@ -7,7 +7,7 @@
 package com.powsybl.security.converter;
 
 import com.google.auto.service.AutoService;
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import com.powsybl.security.json.SecurityAnalysisResultSerializer;
 
 import java.io.IOException;

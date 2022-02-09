@@ -24,7 +24,7 @@ import com.powsybl.iidm.import_.Importers;
 import com.powsybl.iidm.network.Network;
 import com.powsybl.iidm.tools.ConversionToolUtils;
 import com.powsybl.security.Security;
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import com.powsybl.security.converter.SecurityAnalysisResultExporters;
 import com.powsybl.tools.Command;
 import com.powsybl.tools.CommandLineUtil;

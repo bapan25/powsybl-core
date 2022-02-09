@@ -7,7 +7,7 @@
 package com.powsybl.security.converter;
 
 import com.powsybl.commons.PowsyblException;
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

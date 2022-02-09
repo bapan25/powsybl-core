@@ -7,7 +7,7 @@
 package com.powsybl.action.simulator.loadflow;
 
 import com.powsybl.action.simulator.tools.AbstractSecurityAnalysisResultBuilder;
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 import java.util.ArrayList;
 import java.util.Collection;

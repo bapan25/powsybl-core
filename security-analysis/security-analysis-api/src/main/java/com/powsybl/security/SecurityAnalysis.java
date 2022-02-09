@@ -19,6 +19,7 @@ import com.powsybl.iidm.network.Network;
 import com.powsybl.security.detectors.DefaultLimitViolationDetector;
 import com.powsybl.security.interceptors.SecurityAnalysisInterceptor;
 import com.powsybl.security.monitor.StateMonitor;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 import java.util.Collections;
 import java.util.List;

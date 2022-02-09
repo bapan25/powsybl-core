@@ -8,8 +8,10 @@ package com.powsybl.security.json;
 
 import com.powsybl.contingency.json.ContingencyJsonModule;
 import com.powsybl.security.*;
+import com.powsybl.security.results.LimitViolationsResult;
 import com.powsybl.security.results.PostContingencyResult;
 import com.powsybl.security.results.PreContingencyResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 /**
  * @author Geoffroy Jamgotchian <geoffroy.jamgotchian at rte-france.com>

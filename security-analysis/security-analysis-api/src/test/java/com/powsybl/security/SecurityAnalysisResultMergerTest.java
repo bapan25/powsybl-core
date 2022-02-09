@@ -8,7 +8,10 @@ package com.powsybl.security;
 
 import com.powsybl.contingency.Contingency;
 import com.powsybl.iidm.network.Branch;
+import com.powsybl.security.results.LimitViolationsResult;
 import com.powsybl.security.results.PostContingencyResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResultMerger;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

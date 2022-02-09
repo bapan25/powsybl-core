@@ -16,10 +16,10 @@ import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.powsybl.commons.extensions.*;
 import com.powsybl.commons.json.JsonUtil;
-import com.powsybl.security.LimitViolationsResult;
+import com.powsybl.security.results.LimitViolationsResult;
 import com.powsybl.security.NetworkMetadata;
 import com.powsybl.security.results.*;
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 import java.io.IOException;
 import java.io.InputStream;

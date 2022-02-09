@@ -13,6 +13,7 @@ import com.powsybl.iidm.network.Network;
 import com.powsybl.security.*;
 import com.powsybl.security.interceptors.SecurityAnalysisInterceptor;
 import com.powsybl.security.monitor.StateMonitor;
+import com.powsybl.security.results.SecurityAnalysisResult;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;

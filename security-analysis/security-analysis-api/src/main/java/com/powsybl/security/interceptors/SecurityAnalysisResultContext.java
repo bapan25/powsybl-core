@@ -7,13 +7,14 @@
 package com.powsybl.security.interceptors;
 
 import com.powsybl.iidm.network.Network;
+import com.powsybl.security.results.SecurityAnalysisResultBuilder;
 
 /**
  *
  * A context associated with a part of the result of a security analysis.
  *
  * <p>Implementations of security analysis must provide such a context to the
- * {@link com.powsybl.security.SecurityAnalysisResultBuilder result builder},
+ * {@link SecurityAnalysisResultBuilder result builder},
  * so that {@link SecurityAnalysisInterceptor interceptors} can use it.
  *
  * They can provide additional, implementation specific information to interceptors

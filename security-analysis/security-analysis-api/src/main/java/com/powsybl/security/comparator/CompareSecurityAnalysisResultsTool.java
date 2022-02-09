@@ -15,7 +15,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
 import com.google.auto.service.AutoService;
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import com.powsybl.security.json.SecurityAnalysisResultDeserializer;
 import com.powsybl.tools.Command;
 import com.powsybl.tools.Tool;

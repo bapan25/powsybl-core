@@ -9,7 +9,7 @@ package com.powsybl.security.distributed;
 import com.powsybl.computation.ComputationManager;
 import com.powsybl.computation.ExecutionEnvironment;
 import com.powsybl.computation.ExecutionHandler;
-import com.powsybl.security.SecurityAnalysisResult;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import com.powsybl.security.execution.SecurityAnalysisExecution;
 import com.powsybl.security.execution.SecurityAnalysisExecutionInput;
 

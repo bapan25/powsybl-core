@@ -17,6 +17,7 @@ import com.powsybl.security.distributed.DistributedSecurityAnalysisExecution;
 import com.powsybl.security.distributed.ExternalSecurityAnalysisConfig;
 import com.powsybl.security.distributed.ForwardedSecurityAnalysisExecution;
 import com.powsybl.security.interceptors.SecurityAnalysisInterceptor;
+import com.powsybl.security.results.SecurityAnalysisResult;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
