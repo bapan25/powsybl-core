@@ -361,7 +361,7 @@ public final class Security {
     }
 
     public static void printPostContingencyViolations(SecurityAnalysisResult result, Network network, Writer writer, TableFormatterFactory formatterFactory,
-            LimitViolationFilter limitViolationFilter) {
+                                                      LimitViolationFilter limitViolationFilter) {
         printPostContingencyViolations(result, network, writer, formatterFactory, limitViolationFilter, true);
     }
 

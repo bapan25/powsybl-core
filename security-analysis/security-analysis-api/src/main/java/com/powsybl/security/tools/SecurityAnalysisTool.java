@@ -229,12 +229,12 @@ public class SecurityAnalysisTool implements Tool {
         return builder.build();
     }
 
-    private static SecurityAnalysisReport runSecurityAnalysisWithLog(ComputationManager computationManager,
+    private static SecurityAnalysisResult runSecurityAnalysisWithLog(ComputationManager computationManager,
                                                                      SecurityAnalysisExecution execution,
                                                                      SecurityAnalysisExecutionInput input,
                                                                      Path logPath) {
         try {
-            SecurityAnalysisReport report = execution.execute(computationManager, input).join();
+            SecurityAnalysisResult report = execution.execute(computationManager, input).join();
             // copy log bytes to file
             report.getLogBytes()
                 .ifPresent(logBytes -> uncheckedWriteBytes(logBytes, logPath));
@@ -311,11 +311,9 @@ public class SecurityAnalysisTool implements Tool {
         ComputationManager computationManager = options.hasOption(TASK) ? context.getShortTimeExecutionComputationManager() :
             context.getLongTimeExecutionComputationManager();
 
-        SecurityAnalysisReport report = options.getPath(OUTPUT_LOG_OPTION)
+        SecurityAnalysisResult result = options.getPath(OUTPUT_LOG_OPTION)
             .map(logPath -> runSecurityAnalysisWithLog(computationManager, execution, executionInput, logPath))
             .orElseGet(() -> execution.execute(computationManager, executionInput).join());
-
-        SecurityAnalysisResult result = report.getResult();
 
         if (!result.getPreContingencyLimitViolationsResult().isComputationOk()) {
             context.getErrorStream().println("Pre-contingency state divergence");
