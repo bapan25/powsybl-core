@@ -106,11 +106,7 @@ public class SecurityAnalysisTest {
 
         SecurityAnalysisResult result = SecurityAnalysis.run(network,
                 VariantManagerConstants.INITIAL_VARIANT_ID,
-                detector,
-                filter,
-                computationManager,
-                SecurityAnalysisParameters.load(platformConfig),
-                contingenciesProvider,
+                contingenciesProvider, SecurityAnalysisParameters.load(platformConfig), computationManager, filter, detector,
                 interceptors);
 
         assertTrue(result.getPreContingencyLimitViolationsResult().isComputationOk());
@@ -150,11 +146,7 @@ public class SecurityAnalysisTest {
 
         SecurityAnalysisResult result = SecurityAnalysis.run(network,
                 VariantManagerConstants.INITIAL_VARIANT_ID,
-                new DefaultLimitViolationDetector(),
-                new LimitViolationFilter(),
-                computationManager,
-                SecurityAnalysisParameters.load(platformConfig),
-                contingenciesProvider,
+                contingenciesProvider, SecurityAnalysisParameters.load(platformConfig), computationManager, new LimitViolationFilter(), new DefaultLimitViolationDetector(),
                 interceptors);
 
         assertTrue(result.getPreContingencyLimitViolationsResult().isComputationOk());
